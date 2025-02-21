@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Student\studentController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Student\StudentController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 
@@ -11,13 +12,13 @@ Auth::routes();
 
 
 // Ruta por defecto: Login
-Route::get('/', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/', [LoginController::class, 'showLogin'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.process');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Ruta de registro
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.process');
 
 // Rutas protegidas
 Route::middleware('auth')->group(function () {
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function () {
     // Rutas para la edición de perfil
     Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
-    
+
     // Rutas para la gestión de usuarios (editar perfil, etc.)
     // Route::get('users/profile', [UserController::class, 'showProfile'])->name('users.profile');
     // Route::put('users/{id}', [UserController::class, 'updateProfile'])->name('users.updateProfile');

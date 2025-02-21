@@ -10,15 +10,6 @@
     <div class="container" id="container">
         <!-- Formulario de Registro -->
         <div class="form-container sign-up">
-            @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
             <form id="loginForm" method="POST" action="{{ route('register') }}">
                 @csrf
                 <h2>Crear Cuenta</h2>                
@@ -62,5 +53,6 @@
         </div>
     </div>
 
+    @vite('resources/js/app.js')
     <script src="{{ asset('js/script2.js') }}"></script>
 @endsection
